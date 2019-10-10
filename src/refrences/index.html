@@ -1,0 +1,477 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no"
+    />
+    <meta name="format-detection" content="telephone=no" />
+    <meta
+      name="naver-site-verification"
+      content="59ea2e8029dee1e85d26c259f030c1feecd2364d"
+    />
+    <meta name="Author" content="트라이패스" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no"
+    />
+    <meta name="format-detection" content="telephone=no" />
+    <meta
+      name="naver-site-verification"
+      content="59ea2e8029dee1e85d26c259f030c1feecd2364d"
+    />
+    <meta name="Author" content="트라이패스" />
+    <meta name="Description" content="링크드마켓" />
+    <meta name="Keywords" content="링크드마켓" />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://www.linkedmarket.com/" />
+    <meta property="og:title" content="링크드마켓" />
+    <meta property="og:description" content="링크드마켓" />
+    <meta property="og:image" content="/resources/images/linkedmarket.png" />
+    <title>링크드마켓</title>
+    <link rel="stylesheet" href="resources/styles/reset.css" />
+    <link rel="stylesheet" href="resources/styles/main.css" />
+    <link rel="stylesheet" href="resources/styles/font.css" />
+    <link rel="stylesheet" href="resources/styles/swiper.css" />
+    <script src="resources/js/jquery-2.2.4.min.js"></script>
+    <script src="resources/js/swiper.min.js"></script>
+    <script>
+      $(document).ready(function() {
+        var changeImage = $('#productInfo')
+
+        $('.productBox > ul > .product1').bind('click', function() {
+          $(this).addClass('on1')
+          $('.product2 , .product3 ')
+            .removeClass('on2')
+            .removeClass('on3')
+          changeImage.removeClass().addClass('productInfo1')
+        })
+        $('.productBox > ul > .product2').bind('click', function() {
+          $(this).addClass('on2')
+          $('.product1 , .product3 ')
+            .removeClass('on1')
+            .removeClass('on3')
+          changeImage.removeClass().addClass('productInfo2')
+        })
+        $('.productBox > ul > .product3').bind('click', function() {
+          $(this).addClass('on3')
+          $('.product2 , .product1')
+            .removeClass('on1')
+            .removeClass('on2')
+          changeImage.removeClass().addClass('productInfo3')
+        })
+      })
+    </script>
+  </head>
+  <body>
+    <!--앱다운로드 팝업-->
+    <div class="PopUpWrap" style="display: none">
+      <div class="PopWrapInner">
+        <div class="popDownload">
+          <div class="PopContent">
+            <div class="popLogo">
+              <img src="resources/images/popLogo.png" alt="링크드마켓" />
+            </div>
+            <div class="popTit">
+              웰컴, 링크드마켓!<br />
+              편하고 쉽게 앱으로 시작하세요!
+            </div>
+            <div class="popDown">
+              <div class="popDownTxt">앱 다운로드 주소 메시지로 받기</div>
+              <div class="row ">
+                <label for="phone"></label>
+                <input
+                  type="number"
+                  id="phone"
+                  placeholder="휴대폰 번호 입력(-제외)"
+                />
+                <button class="btnBlue">받기</button>
+              </div>
+              <div class="row mt10">
+                <label for="number"></label>
+                <input type="number" id="number" placeholder="인증번호 입력" />
+                <button class="btnBlue">확인</button>
+              </div>
+              <div class="popDownTxt2">
+                인증번호가 발송되었습니다. (남은시간 00:00)
+              </div>
+            </div>
+            <div class="agreeBox">
+              <div class="checkBoxArea">
+                <div class="checkBox">
+                  <input type="checkbox" class="checkBoxInput" />
+                  <span class="iconCheckBox"></span>
+                  <label for="">개인정보 수집·이용에 동의합니다.</label>
+                </div>
+              </div>
+              <div class="agreeTable">
+                <img
+                  src="resources/images/agreeTable.png"
+                  alt="개인정보 수집항목: 휴대폰 번호, 수집및 이용 목적: SMS 발송, 보유기간: 7일 후 파기"
+                />
+              </div>
+            </div>
+          </div>
+          <button class="popClose">
+            <img src="resources/images/popClose.png" alt="닫기" />
+          </button>
+        </div>
+      </div>
+    </div>
+    <!--//앱다운로드 팝업-->
+    <!--공유하기 팝업-->
+    <div class="PopUpWrap" style="display: none;">
+      <div class="PopWrapInner">
+        <div class="popShare">
+          <div class="PopContent">
+            <div class="popLogo">
+              <img src="resources/images/popLogo.png" alt="링크드마켓" />
+            </div>
+            <div class="popTit">
+              공유하기
+            </div>
+            <div class="popImgShare">
+              <img
+                src="resources/images/imgShare.png"
+                alt="공유하고자 하는 SNS 선택, 상품을 홍보해주세요"
+              />
+            </div>
+          </div>
+          <button class="popClose">
+            <img src="resources/images/popClose.png" alt="닫기" />
+          </button>
+        </div>
+      </div>
+    </div>
+    <!--//공유하기 팝업-->
+    <!--공유하기 팝업-->
+    <div class="PopUpWrap" style="display: none;">
+      <div class="PopWrapInner">
+        <div class="popPayment">
+          <div class="PopContent">
+            <div class="popLogo">
+              <img src="resources/images/popLogo.png" alt="링크드마켓" />
+            </div>
+            <div class="popTit">
+              결제하기
+            </div>
+            <div class="popImgPayment">
+              <img src="resources/images/imgPayment.png" alt="결제하기 예시" />
+            </div>
+          </div>
+          <button class="popClose">
+            <img src="resources/images/popClose.png" alt="닫기" />
+          </button>
+        </div>
+      </div>
+    </div>
+    <!--//공유하기 팝업-->
+    <!--wrap-->
+    <div class="wrap">
+      <div class="header">
+        <div class="mainInner">
+          <h1><img src="resources/images/logo.png" alt="링크드마켓" /></h1>
+          <button>로그인</button>
+        </div>
+      </div>
+      <!--mainContent1-->
+      <div class="mainContent1">
+        <!-- Swiper -->
+        <div class="swiper-container">
+          <div class="swiper-wrapper">
+            <div class="swiper-slide slide1">
+              <div class="mainCon">
+                <div class="mainConLeft">
+                  <div class="mainTxt">혜택 가득-<br />마법이 시작되는</div>
+                  <div class="mainTit mt40">웰컴, 링크드마켓 :)</div>
+                  <button class="btnSkyBlue">무료 회원가입</button>
+                </div>
+                <div class="mainConRight"></div>
+              </div>
+            </div>
+            <div class="swiper-slide slide2">
+              <div class="mainCon">
+                <div class="mainConLeft">
+                  <div class="mainTxt">
+                    세상에 없던, 단 하나의 마켓<br />
+                    <strong>구매해도 판매해도 혜택</strong>이 쌓이는 곳.
+                  </div>
+                  <div class="MainTxtS mt30">
+                    누구나 돈을 벌고 싶죠.<br />
+                    누구나 온라인 최저가 수준으로 쇼핑을 하고 싶죠.<br />
+                    그래서, 링크드마켓은 이 모든 바람이 충족되는 마켓을<br />
+                    만들기 위해 생각했습니다.
+                  </div>
+                  <div class="mainImg">
+                    <img
+                      src="resources/images/mainTagImg.png"
+                      alt="누구나, 쉽게, 링크공유, 현금적립, 쓩뙁!"
+                    />
+                  </div>
+                </div>
+                <div class="mainConRight">
+                  <div class="mainGif">
+                    <img
+                      src="resources/images/brand.gif"
+                      alt="구매하고 판매해도"
+                    />
+                  </div>
+                  <button class="btnSkyBlue">최대 20% 적립 받기</button>
+                </div>
+              </div>
+            </div>
+            <div class="swiper-slide slide3">
+              <div class="mainCon">
+                <div class="mainConLeft">
+                  <div class="MainTxtS">
+                    소소하게 용돈을 벌고 싶은 ,<br />
+                    평소 맛집과 상품을 주변 지인에게 추천하는 ,<br />
+                    최저가 쇼핑을 즐기는 ,<br />
+                    투잡을 갖고 싶은 ,<br />
+                    SNS에 사진과 글을 올리는,
+                  </div>
+                  <div class="mainTit"><span>모두,</span> 링크드마켓</div>
+                  <button class="btnWhite">부담없이 알아보세요</button>
+                </div>
+                <div class="mainConRight"></div>
+              </div>
+            </div>
+          </div>
+          <!-- Add Pagination -->
+          <div class="swiper-pagination"></div>
+        </div>
+        <!--// Swiper -->
+      </div>
+      <!--//mainContent1-->
+      <!--mainContent2-->
+      <div class="mainContent2">
+        <div class="mainInner">
+          <div class="infoCon">
+            <div class="infoTit">시작은, <strong>간단</strong>해요!</div>
+            <div class="infoTxt mb20">
+              무료회원가입을 시작으로 마법같은 링크를 통해 현금이 쌓인다는 사실.
+            </div>
+            <div class="infoButton">
+              <div class="infoTxt">단, 5초만의 간단한 무료 회원가입</div>
+              <button class="btnSkyBlue">시작이 반이죠</button>
+            </div>
+            <div class="infoButton">
+              <div class="infoTxt">링크드마켓앱도 있다는 사실, 기억하세요!</div>
+              <button class="btnSkyBlue">앱 다운로드 링크 받기</button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!--//mainContent2-->
+      <!--mainContent3-->
+      <div class="mainContent3">
+        <div class="mainInner">
+          <div class="infoCon">
+            <div class="infoSec1">
+              <div class="infoTit">
+                내가 할 수 있을까? <strong>뭐부터 해야하지?</strong>
+              </div>
+              <div class="infoTxt">
+                “친구, 특정 누군가에게
+                <strong>내 상품 링크를</strong> 공유하세요.”
+              </div>
+              <div class="infoImg">
+                <img
+                  src="resources/images/info1.png"
+                  alt="상품선택, 내상품링크 공유하기, 내 상품링크에서 판매가 되면, 수익금이 차곡차곡 쌓여요"
+                />
+              </div>
+            </div>
+            <div class="infoSec2">
+              <div class="infoTit">조금 더 <strong>수익을 내볼까?</strong></div>
+              <div class="infoTxt">
+                “<strong>SNS에 내 상품링크</strong>를 올려보세요.”
+              </div>
+              <div class="infoImg">
+                <img
+                  src="resources/images/info2.png"
+                  alt="상품선택, 내 상품링크 복사 후 SNS에 올리기, 내 상품링크에서 판매가 되면, 수익금이 차곡차곡 쌓여요"
+                />
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!--//mainContent3-->
+      <!--mainContent4-->
+      <div class="mainContent4">
+        <div class="mainInner">
+          <div class="infoCon">
+            <div class="mainConLeft">
+              <div class="productTit">링크드마켓 상품 선택하기</div>
+              <div class="productBox">
+                <ul class="productImg">
+                  <li class="product1"></li>
+                  <li class="product2"></li>
+                  <li class="product3"></li>
+                </ul>
+                <div class="productInfo1" id="productInfo">
+                  <button class="btnNavy btnProduct1">공유하기</button>
+                  <button class="btnNavy btnProduct2">구매하기</button>
+                </div>
+              </div>
+              <div class="btnProceeds">
+                <button class="btnNavy">수익금 받기</button>
+              </div>
+            </div>
+            <div class="mainConRight">
+              <div class="infoTit">
+                구매하거나 판매하면<br />상품가의
+                <strong>최대 20% 현금 수익</strong>
+              </div>
+              <div class="infoTxt">
+                링크드마켓에서 마음에 드는 상품을 선택합니다.<br />
+                내 상품링크를 주변에 공유하거나, SNS에 올려보세요.<br />
+                공유한 링크에서 판매해도, 내가 구매해도<br />
+                최대 20%까지 현금으로 적립됩니다.
+              </div>
+              <button class="btnWhite">
+                공유 한번으로, 최대 20% 수익금 받기
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!--//mainContent4-->
+      <!--mainContent5-->
+      <div class="mainContent5">
+        <div class="mainInner">
+          <div class="infoCon">
+            <div class="infoSec1">
+              <div class="infoTit">
+                아직, 상품링크 공유는 망설여져요.<br /><strong
+                  >다른 방법 없을까요?</strong
+                >
+              </div>
+              <div class="infoTxt">
+                당장 수익을 내려고 무리하지 마세요.<br />
+                일단, 필요한 상품을 구매해보세요.<br />
+                그래도 똑같이 최대 20% 현금수익금이 쌓이니까요.
+              </div>
+            </div>
+            <div class="infoSec2">
+              <div class="infoTxt">
+                “링크드마켓은 <strong>내가 할 수 있을 때, 편하게</strong> 하시면
+                돼요.”
+              </div>
+              <div class="infoImg">
+                <img
+                  src="resources/images/info3.png"
+                  alt="상품선택, 구매하기, 수익금이 차곡차곡 쌓여요"
+                />
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!--//mainContent5-->
+      <!--mainContent6-->
+      <div class="mainContent6">
+        <div class="mainInner">
+          <div class="infoCon">
+            <div class="infoSec1">
+              <div class="infoTit">
+                내가 받은 <strong>수익금은 어떻게 찾아가죠?</strong>
+              </div>
+              <div class="infoTxt">
+                쌓인 수익금은 정산일에 내 계좌로 입금되요.
+              </div>
+            </div>
+            <div class="infoSec2">
+              <div class="infoTxt">
+                “수익금은 <strong>무한대로 마음껏 적립</strong>하실 수 있고,<br />
+                링크드마켓은 정산일에 맞춰
+                <strong>바로바로 회원님의 계좌로 입금</strong>해드려요.”
+              </div>
+              <div class="infoImg">
+                <img
+                  src="resources/images/info4.png"
+                  alt="1.구매 판매로 적립된 수입금 2.한달에 4번 정산일(7일 정산주기) 3.등록된 내 계좌로 '뙇'입금"
+                />
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!--//mainContent6-->
+      <!--mainContent7-->
+      <div class="mainContent7">
+        <div class="mainInner">
+          <div class="infoCon">
+            <div class="infoTit">
+              언제/어디서나/간편하게<br />링크드마켓을 하려면!
+            </div>
+            <div class="infoTxt">
+              링크드마켓 앱을 다운로드 하세요.
+            </div>
+            <button class="btnSkyBlue">최대 20% 혜택을 앱으로 받기</button>
+          </div>
+        </div>
+      </div>
+      <!--//mainContent5-->
+      <!--footer-->
+      <div class="footer">
+        <div class="footerInner">
+          <div class="footLogo">
+            <img src="resources/images/footLogo.png" alt="링크드마켓" />
+          </div>
+          <div class="footRight">
+            <div class="footinfo">
+              <ul>
+                <li><a href="#">공지사항</a><span>|</span></li>
+                <li><a href="#">자주묻는 질문</a><span>|</span></li>
+                <li><a href="#">이용약관</a><span>|</span></li>
+                <li><a href="#">개인정보 처리방침</a><span>|</span></li>
+                <li><a href="#">앱 다운로드 페이지</a></li>
+              </ul>
+            </div>
+            <div class="footAddress">
+              <address>
+                서울특별시 금천구 가산디지털1로 168 우림라이온스밸리 C동 201호
+              </address>
+              <div class="addr">
+                T. 1661-9012<span>/</span>F. 02-2026-3201<span>/</span>EMAIL :
+                cs@linkedmarket.co.kr
+              </div>
+            </div>
+            <div class="copyright">
+              본 콘텐츠의 저작권은 저작권자에 있으며, 이를 무단으로 이용하는
+              경우 저작권법 등에 따라 법적 책임을 질 수 있습니다.<br />
+              Copyright (C) 2019 TRIPATH. All Rights Reserved
+            </div>
+            <div class="footSns">
+              <div class="blog">
+                <a href="https://blog.naver.com/linkedmarket" target="_blank"
+                  >링크드마켓 블로그</a
+                >
+              </div>
+              <div class="faceBook">링크드마켓 페이스북</div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!--//footer-->
+    </div>
+    <!--//wrap-->
+    <script>
+      var swiper = new Swiper('.swiper-container', {
+        spaceBetween: 10,
+        autoplay: {
+          delay: 400000,
+          disableOnInteraction: false
+        },
+        pagination: {
+          el: '.swiper-pagination',
+          clickable: true
+        }
+      })
+    </script>
+  </body>
+</html>

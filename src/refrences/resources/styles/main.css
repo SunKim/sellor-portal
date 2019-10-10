@@ -1,0 +1,877 @@
+@charset "utf-8";
+/* common */
+html{font-size:10px;width:100%;height:100%;}
+body {font-family: 'NanumSquare', '나눔고딕', 'Nanum Gothic', "Malgun Gothic","맑은 고딕","Dotum","돋움","굴림",Sans-serif; position:relative;}
+.clear:after{content:''; display:block; clear:both;}
+.blind{
+    display: none;
+}
+
+/*margin*/
+.mt0{margin-top: 0rem !important;}
+.mt5{margin-top: 0.5rem !important;}
+.mt10{margin-top: 1rem !important;}
+.mt15{margin-top: 1.5rem !important;}
+.mt20{margin-top: 2rem !important;}
+.mt30{margin-top: 3rem !important;}
+.mt40{margin-top: 4rem !important;}
+.mt50{margin-top: 5rem !important;}
+.mb0{margin-bottom: 0rem !important;}
+.mb5{margin-bottom: 0.5rem !important;}
+.mb10{margin-bottom: 1rem !important;}
+.mb15{margin-bottom: 1.5rem !important;}
+.mb20{margin-bottom: 2rem !important;}
+.mb30{margin-bottom: 3rem !important;}
+.mb40{margin-bottom: 4rem !important;}
+.mb50{margin-bottom: 5rem !important;}
+.mb60{margin-bottom: 6rem !important;}
+.mr0{margin-right: 0rem !important;}
+.mr5{margin-right: 0.5rem !important;}
+.mr10{margin-right: 1rem !important;}
+.mr20{margin-right: 2rem !important;}
+.mr30{margin-right: 3rem !important;}
+.mr40{margin-right: 4rem !important;}
+.ml5{margin-left: 0.5rem !important;}
+.ml10{margin-left: 1rem !important;}
+.ml20{margin-left: 2rem !important;}
+.ml30{margin-left: 3rem !important;}
+.ml40{margin-left: 4rem !important;}
+
+
+/*common*/
+.wrap{width:100%;height:100%;}
+.mainInner{
+    width: 117rem;
+    margin: 0 auto;
+    padding: 0 1rem;
+    box-sizing: border-box;
+}
+img{
+    width: 100%;
+    height: 100%;
+}
+
+/*button*/
+.btnSkyBlue{
+    font-size: 2.4rem;
+    color: #2b90d9;
+    text-align: center;
+    border: 1px solid #2b90d9;
+}
+.btnSkyBlue:hover,
+.btnSkyBlue:active{
+   background: #2b90d9;
+   color: #ffffff;
+   border: 1px solid #2b90d9;
+}
+.btnWhite{
+    font-size: 2.4rem;
+    color: #ffffff;
+    text-align: center;
+    border: 1px solid #ffffff;
+}
+.btnWhite:hover,
+.btnWhite:active{
+   background: #2b90d9;
+   color: #ffffff;
+   border: 1px solid #2b90d9;
+}
+.btnBlue{
+    background: #3298d4;
+    color: #ffffff;
+    font-size: 2.2rem;
+    text-align: center;
+}
+.btnNavy{
+    background: #282c37;
+    color: #ffffff;
+    font-size: 1.45rem;
+    text-align: center;
+}
+.btnKaKao{
+    background: #ffeb33;
+    color: #423630;
+    font-size: 2.2rem;
+    text-align: center;
+    height: 5.4rem;
+    line-height: 5.4rem;
+    width: 100%;
+    margin-bottom: 2rem;
+}
+.btnNaver{
+    background: #3ec729;
+    color: #ffffff;
+    font-size: 2.2rem;
+    text-align: center;
+    height: 5.4rem;
+    line-height: 5.4rem;
+    width: 100%;
+}
+
+/*check box*/
+.checkBoxArea:after{
+	display: block;
+	content: "";
+	clear: both;
+}
+.checkBox{
+	position: relative;
+	vertical-align: middle;
+	float: left;
+}
+.checkBox input[type=checkbox]{
+	position: absolute;
+	left: 0;
+	top: 0;
+	opacity: 0;
+	width: 100%;
+	height: 100%;
+}
+.checkBox .iconCheckBox{
+	display: inline-block;
+	vertical-align: middle; 
+	background: url(../images/checkboxDefault.png) no-repeat 0 0;
+	background-size: 100% 100%;
+	width: 1.7rem;
+	height: 1.7rem;
+}
+.checkBox input[type=checkbox]:checked + .iconCheckBox{
+	background: url(../images/checkboxChecked.png) no-repeat 0 0;
+	background-size:100% 100%;
+	width: 1.7rem;
+	height: 1.7rem;
+}
+.checkBoxArea label{
+	font-size: 2rem;
+	line-height: 2rem; 
+	color:#000000;
+	margin-left: 1rem;
+	vertical-align: middle;
+}
+
+/*header*/
+.header:after{
+    display: block;
+    content: "";
+    clear: both;
+}
+.header{
+    margin: 1.5rem 0;
+}
+.header h1{
+    float: left;
+    width: 18.2rem;
+    height: 2.3rem;
+}
+.header button{
+    float: right;
+    font-size: 1.6rem;
+    color:#000000;
+}
+
+/*mainContent1*/
+.mainContent1 .swiper-container {
+    width: 100%;
+    height: 100%;
+    position: relative;
+}
+.mainContent1 .swiper-slide {
+   height: 75.4rem;
+}
+.mainContent1{
+    width: 100%;
+    box-sizing: border-box;
+    background-color: #110e38;
+}
+.mainContent1 .swiper-slide .mainCon{
+    width: 117rem;
+    padding: 0 1rem;
+    box-sizing: border-box;
+    margin: 0 auto;
+}
+.mainCon{
+    width: 100%;
+    height: 75.4rem;
+}
+.mainCon:after{
+    display: block;
+    content: "";
+    clear: both;
+}
+.mainConLeft{
+    float: left;
+}
+.mainConRight{
+    float: right;
+}
+.mainCon .mainTxt{
+    font-size: 3.8rem;
+    line-height: 4.8rem;
+    color: #ffffff;
+}
+.mainCon .mainTxt strong{
+    font-size: 4.4rem;
+    color: #2b90d9;
+    font-size: bold;
+}
+.mainCon .mainTit{
+    font-size: 4.4rem;
+    font-weight: bold;
+    color: #2b90d9;
+}
+.mainCon .MainTxtS{
+    font-size: 2.2rem;
+    color:#ffffff;
+    line-height: 3.4rem;
+}
+
+
+.mainContent1 .swiper-slide.slide1{
+    background-color: #110e38;
+}
+.mainContent1 .swiper-slide.slide1 .btnSkyBlue{
+    width: 24rem;
+    height: 6rem;
+    line-height: 6rem;
+    margin-top: 6rem;
+}
+.mainContent1 .swiper-slide.slide1 .mainConLeft{
+    margin-top: 20rem;
+}
+.mainContent1 .swiper-slide.slide1 .mainConRight{
+    margin-top: 16rem;
+    width: 73.1rem;
+    height: 60rem;
+    background: url(../images/mainBg1.png) no-repeat 0 0;
+}
+
+
+.mainContent1 .swiper-slide.slide2{
+    background-color: #110e38;
+}
+.mainContent1 .swiper-slide.slide2 .mainConLeft{
+    margin-top: 15rem;
+}
+.mainContent1 .swiper-slide.slide2 .mainImg{
+    margin-top: 5rem;
+    width: 51.1rem;
+    height: 18.6rem;
+}
+.mainContent1 .swiper-slide.slide2 .mainConRight .mainGif{
+    width: 36rem;
+    height: 7.5rem;
+    margin-top: 29.5rem;
+}
+.mainContent1 .swiper-slide.slide2 .mainConRight .btnSkyBlue{
+    width: 35.5rem;
+    height: 6rem;
+    line-height: 6rem;
+    float:right;
+}
+
+.mainContent1 .swiper-slide.slide3{
+    background: #1e6dc7 url(../images/mainBg3.png) no-repeat center bottom;
+}
+.mainContent1 .swiper-slide.slide3 .mainConLeft{
+    margin-top: 20rem;
+}
+.mainContent1 .swiper-slide.slide3 .mainTit{
+    color:#ffffff;
+    margin: 4rem 0 5rem;
+}
+.mainContent1 .swiper-slide.slide3 .mainTit span{
+    font-weight: normal;
+}
+.mainContent1 .swiper-slide.slide3 .btnWhite{
+    width: 27.5rem;
+    height: 6rem;
+    line-height: 6rem;
+}
+.mainContent1 .swiper-slide.slide3 .mainConRight{
+    margin-top: 15.4rem;;
+    background: url(../images/mainBg3_1.png) no-repeat 0 0;
+    width: 42.8rem;
+    height: 60rem;
+}
+
+.mainContent1 .swiper-container-horizontal>.swiper-pagination-bullets{ 
+    bottom:3rem;
+    left: 50%;
+    margin-left: -3.6rem;
+    background: #1f5995;
+    width: 7.4rem;
+    height: 3rem;
+    line-height: 3rem;
+    border:  1px solid #1f5995;
+    border-radius: 4rem;
+    text-align: center;
+    padding-top: 0.3rem;
+    box-sizing: border-box;
+}
+.mainContent1 .swiper-container-horizontal > .swiper-pagination-bullets .swiper-pagination-bullet{
+    background:#ffffff;
+    opacity: 1;
+    width: 1.2rem;
+    height: 1.2rem;
+
+}
+.mainContent1 .swiper-container-horizontal > .swiper-pagination-bullets .swiper-pagination-bullet.swiper-pagination-bullet-active{
+    width: 1.6rem;
+    height: 1.6rem;
+    border: 2px solid #ffffff;
+    background: none;
+    vertical-align: top;
+}
+
+/*mainContent2*/
+.infoCon{
+    text-align: center;
+    margin: 0 auto;
+}
+.infoCon:after{
+    display: block;
+    content: "";
+    clear: both;
+}
+.infoCon .infoTit{
+    font-size: 4rem;
+    color:#0b0c10;
+    margin-bottom: 4.2rem;
+}
+.infoCon .infoTit strong,
+.infoCon .infoTxt strong{
+    font-weight: bold;
+}
+.infoCon .infoTxt{
+    font-size:2.2rem;
+    color: #0b0c10;
+    line-height: 3.4rem;
+}
+.mainContent2{
+    background: #f7f7f7;
+    padding: 14.5rem 0;
+    box-sizing: border-box;
+}
+.mainContent2 .infoTit{
+    font-size: 4.4rem;
+}
+.mainContent2 .infoButton{
+    padding-top: 7rem;
+}
+.mainContent2 .infoButton .btnSkyBlue{
+    width: 27.5rem;
+    height: 6rem;
+    line-height: 6rem;
+    margin-top: 2rem;
+}
+
+/*mainContent3*/
+.mainContent3{
+    background: #ffffff;
+    padding: 14.5rem 0 13.8rem;
+}
+.mainContent3 .infoCon .infoTit,
+.mainContent3 .infoCon .infoTxt{
+    color: #282c37;
+}
+.mainContent3 .infoImg{
+    margin: 5.5rem auto 0;
+    width: 89rem;
+    height: 15.9rem;
+}
+.infoSec1{
+    margin-bottom: 3.4rem;
+}
+.infoSec2{
+    background: url(../images/line.png) no-repeat center 0;
+    padding-top: 5.5rem;
+}
+
+/*mainContent4*/
+.mainContent4{
+    background: url(../images/bgMain4.png) repeat-x 0 0;
+    height: 94rem;
+    box-sizing: border-box;
+}
+.mainContent4 .mainConLeft{
+    width: 44.9rem;
+    height: 68.2rem;
+    background: url(../images/bgProduct.png) no-repeat 0 0;
+    margin-top: 15rem;
+    padding: 3.6rem 2.4rem 4rem;
+    box-sizing: border-box;
+    position: relative;
+}
+.mainContent4 .productTit{
+    font-size: 1.5rem;
+    color: #ffffff;
+    margin-bottom: 2.5rem;
+    text-align: left;
+}
+.mainContent4 .productBox:after{
+    display: block;
+    content: "";
+    clear: both;
+}
+.mainContent4 .productBox .productImg li{
+    float: left;
+}
+.mainContent4 .productBox .productImg .product1{
+    width: 11rem;
+    height: 11rem;
+    background: url(../images/product1.png) no-repeat 0 0;
+}
+.mainContent4 .productBox .productImg .product2{
+    width: 11rem;
+    height: 11rem;
+    margin: 0 2rem;
+    background: url(../images/product2.png) no-repeat 0 0;
+}
+.mainContent4 .productBox .productImg .product3{
+    width: 11rem;
+    height: 11rem;
+    background: url(../images/product3.png) no-repeat 0 0;
+}
+.mainContent4 .productBox .productImg .product1.on1{
+    background: url(../images/productClick1.png) no-repeat 0 0;
+    width: 11rem;
+    height: 11rem;
+}
+.mainContent4 .productBox .productImg .product2.on2{
+    background: url(../images/productClick2.png) no-repeat 0 0;
+    width: 11rem;
+    height: 11rem;
+}
+.mainContent4 .productBox .productImg .product3.on3{
+    background: url(../images/productClick3.png) no-repeat 0 0;
+    width: 11rem;
+    height: 11rem;
+}
+.mainContent4 .productBox #productInfo{
+    width: 36.6rem;
+    height: 30.2rem;
+    position: absolute;
+    top: 23rem;
+}
+.mainContent4 .productBox #productInfo button{
+    width: 9rem;
+    height: 3.7rem;
+    line-height: 3.7rem;
+}
+.mainContent4 .productBox #productInfo button.btnProduct1{
+    position: absolute;
+    top: 2.5rem;
+    right:0;
+}
+.mainContent4 .productBox #productInfo button.btnProduct2{
+    position: absolute;
+    top: 12.2rem;
+    right:0;
+}
+.mainContent4 .productBox .productInfo1{
+    background: url(../images/productInfo1.png) no-repeat 0 0;
+}
+.mainContent4 .productBox .productInfo2{
+    background: url(../images/productInfo2.png) no-repeat 0 0;
+}
+.mainContent4 .productBox .productInfo3{
+    background: url(../images/productInfo3.png) no-repeat 0 0;
+}
+.mainContent4 .btnProceeds{
+    position: absolute;
+    right: 6rem;
+    top: 56.3rem;
+}
+.mainContent4 .btnProceeds button{
+    width: 36.5rem;
+    height: 3.8rem;
+    line-height: 3.8rem;
+}
+
+.mainContent4 .mainConRight .infoTit{
+    text-align: left;
+    color: #ffffff;
+    margin-top: 15rem;
+}
+.mainContent4 .mainConRight .infoTxt{
+    text-align: left;
+    color: #ffffff;
+}
+.mainContent4 .mainConRight .btnWhite{
+    width: 41.5rem;
+    height: 6rem;
+    line-height: 6rem;
+    margin-top: 6.2rem;
+    float: left;
+}
+
+/*mainContent5*/
+.mainContent5{
+   padding: 14.5rem 0 13.7rem;
+}
+.mainContent5 .infoImg{
+    margin: 4.5rem auto 0;
+    width: 65.2rem;
+    height: 15.7rem;
+}
+
+/*mainContent6*/
+.mainContent6{
+    background: url(../images/bgMain6.png) no-repeat center 0;
+    background-size:100% 100%; 
+    padding: 14.5rem 0 0;
+    box-sizing:border-box;
+}
+.mainContent6 .infoTit,
+.mainContent6 .infoTxt{
+    color:#ffffff;
+}
+
+.mainContent6 .infoSec2{
+    background: url(../images/lineW.png) no-repeat center 0;
+    padding-top: 5.5rem;
+}
+.mainContent6 .infoImg{
+    margin-top: 8rem;
+    width: 99.2rem;
+    height:35.9rem;
+}
+
+/*mainContent7*/
+.mainContent7{
+    padding: 14.5rem 0;
+    box-sizing: border-box;
+}
+.mainContent7 .btnSkyBlue{
+    margin-top: 7rem;
+    width: 35rem;
+    height: 6rem;
+    line-height: 6rem;
+}
+
+
+/*footer*/
+.footer{
+    background: #000000;
+    padding: 4.8rem 0 3.5rem;
+    width: 100%;
+    height: 20.6rem;
+    box-sizing: border-box;
+}
+.footerInner{
+    width: 117rem;
+    margin: 0 auto;
+    padding: 0 1rem;
+    box-sizing: border-box;
+    position: relative;
+}
+.footerInner:after{
+    display: block;
+    content: "";
+    clear: both;
+}
+.footer .footLogo{
+    float: left;
+    width: 17rem;
+    height: 7rem;
+}
+.footer .footRight{
+    float: left;
+    margin-left: 9rem;
+}
+.footer .footinfo ul:after{
+    display: block;
+    content: "";
+    clear: both;
+}
+.footer .footinfo ul li{
+    float: left;
+}
+.footer .footinfo ul li a{
+    font-size: 1.4rem;
+    color: #e0e0e0;
+}
+.footer .footinfo ul li span{
+    padding: 0 2rem;
+    font-size: 1.4rem;
+    color: #e0e0e0;
+}
+
+.footer .footAddress{
+    margin: 3rem 0;
+    font-size: 1.4rem;
+    color: #e0e0e0;
+}
+.footer .footAddress:after{
+    display: block;
+    content: "";
+    clear: both;
+}
+.footer .footAddress address{
+    float: left;
+    margin-right: 3rem;
+}
+.footer .footAddress .addr{
+    float: left;
+}
+.footer .footAddress .addr span{
+    margin: 0 1rem;
+}
+.footer .copyright{
+    font-size: 1.4rem;
+    color: #e0e0e0;
+    line-height: 1.8rem;
+}
+.footer .footSns:after{
+    display: block;
+    content: "";
+    clear: both;
+}
+.footer .footSns{
+    position: absolute;
+    top: -2rem;
+    right: 8rem;
+}
+.footer .footSns >div{
+    float: left;
+}
+
+.footer .footSns .blog a{
+    overflow: hidden;
+    text-indent: -9999px;
+    display: inline-block;
+    width: 5rem;
+    height: 5rem;
+    background: url(../images/icoBlog.png) no-repeat 0 0;
+}
+.footer .footSns .blog a:hover{
+    background: url(../images/icoBlogHover.png) no-repeat 0 0;
+}
+.footer .footSns .faceBook{
+    background: url(../images/icoFaceBook.png) no-repeat 0 0;
+    margin-left: 2.2rem;
+    width: 5rem;
+    height: 5rem;
+    overflow: hidden;
+    text-indent: -9999px;
+}
+
+
+/*로그인*/
+.loginContainer{
+    background: #f6f6f6;
+    width: 100%;
+    height: 100vh;
+    padding: 14rem 0;
+    box-sizing: border-box;
+}
+.loginContent{
+    width: 114rem;
+    margin: 0 auto;
+}
+.loginContent h3{
+    font-size: 4rem;
+    color: #000000;
+    text-align: center;
+    padding-bottom: 7rem;
+    font-weight: normal;
+}
+
+.loginContent .loginLogo{
+	text-align: center;
+    width: 34.3rem;
+    height: 4.2rem;
+    margin: 0 auto 6rem;
+}
+.loginContent .loginBox{
+    width: 45.5rem;
+    margin: 0 auto;
+}
+.row .rowTitle{
+    font-size: 2.2rem;
+    color: #000000;
+    display: block;
+    margin: 2.2rem 0 1rem;
+
+}
+.row input{
+    border: 1px solid #bbbbbb;
+    width: 100%;
+    height: 5.2rem;
+    line-height: 5.2rem;
+    padding: 0 2rem;
+    box-sizing: border-box;
+    font-size: 1.8rem;
+    color: #000000;
+}
+.row input[type=text]::-ms-clear {
+ 	display:none;
+}
+.row input[type=text]:-ms-clear {
+ 	display:none;
+}
+.row input::placeholder{
+    font-size: 2rem;
+    color: #a0a0a0;
+    text-align: center;
+}
+.row input::-webkit-input-placeholder {
+	font-size: 2rem;
+}
+.row input:-moz-placeholder {
+	font-size: 2rem;
+}
+.row input::-moz-placeholder {
+	font-size: 2rem;  
+}
+.row input:-ms-input-placeholder {
+	font-size: 2rem;
+	color: #a0a0a0;
+}
+.row input[type=number]::-webkit-inner-spin-button, 
+.row input[type=number]::-webkit-outer-spin-button { 
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    margin: 0; 
+}
+.errMsg{
+    font-size: 1.8rem;
+    color: #e60000;
+}
+.loginContent .btnBlue{
+    width: 100%;
+    height: 5.4rem;
+    line-height: 5.4rem;
+    margin-top: 1rem;
+}
+.loginContent .checkBoxArea{
+    margin: 4.5rem 0;
+}
+.loginContent .checkBoxArea a{
+    font-size: 2.2rem;
+    color: #a0a0a0;
+    text-decoration: underline;
+    float: right;
+}
+
+/*팝업 common*/
+.PopUpWrap{
+    position: fixed; 
+    z-index:9990; 
+    width:100vw; 
+    top:0; 
+    height:100vh; 
+    background: url(../images/dim.png) no-repeat 100% 100%;
+    display: table;
+}
+.PopUpWrap:after{
+    content:""; 
+    display: block; 
+    clear:both;
+}
+.PopUpWrap .PopWrapInner{
+    display:table-cell; 
+    vertical-align:middle; 
+    width:100%; 
+    height:100%;
+    z-index: 9999;
+}
+.PopUpWrap .PopWrapInner .popLogo{
+    width: 6.5rem;
+    height: 2.7rem;
+    margin: 0 auto;
+    padding-top: 4.4rem;
+}
+.PopUpWrap .PopWrapInner .popTit{
+    font-size: 2.6rem;
+    color: #000000;
+    line-height: 2.8rem;
+    margin-top: 2.5rem;
+}
+
+/*앱다운로드 팝업*/
+.PopUpWrap .PopWrapInner .popDownload{
+    width: 59.5rem;
+    height: 56rem;
+    text-align: center;
+    margin: 0 auto;
+    background: #f6f6f6;
+    position: relative;
+}
+.PopUpWrap .PopWrapInner .popDown{
+    margin: 4rem auto 0;
+    width: 36.5rem;
+}
+.PopUpWrap .PopWrapInner .popDown .popDownTxt{
+    font-size:1.6rem;
+    color:#2b90d9;
+    margin-bottom: 1rem;
+}
+.PopUpWrap .PopWrapInner .popDown .popDownTxt2{
+    font-size:1.6rem;
+    color:#000000;
+    margin-top: 1rem;
+}
+.PopUpWrap .PopWrapInner .popDown .row input{
+    width: calc( 100% - 9.8rem );
+    width: -webkit-calc( 100% - 9.8rem );
+    width: -moz-calc( 100% - 9.8rem );
+    height: 5rem;
+    line-height: 5rem;
+}
+.PopUpWrap .PopWrapInner .popDown .row .btnBlue{
+    width: 9rem;
+    margin-left: 0.6rem;
+    height: 5rem;
+    line-height: 5rem;
+    font-size: 2rem;
+}
+.PopUpWrap .PopWrapInner .agreeBox{
+    width: 38rem;
+    margin: 4.5rem auto 0;
+    text-align: center;
+}
+.PopUpWrap .PopWrapInner .agreeTable{
+    width: 34.2rem;
+    height: 7.5rem;
+    margin: 2.2rem auto 0;
+}
+.PopUpWrap .PopWrapInner .popClose{
+    width: 3.5rem;
+    height: 3.5rem;
+    position: absolute;
+    top: 3rem;
+    right: 3rem;
+}
+
+/*공유하기 팝업*/
+.PopUpWrap .PopWrapInner .popShare{
+    width: 99.5rem;
+    height: 53rem;
+    text-align: center;
+    margin: 0 auto;
+    background: #f6f6f6;
+    position: relative;
+}
+.PopUpWrap .PopWrapInner .popImgShare{
+    width: 93.4rem;
+    height: 29.2rem;
+    margin: 4rem auto 0;
+}
+
+/*결제하기 팝업*/
+.PopUpWrap .PopWrapInner .popPayment{
+    width: 75rem;
+    height: 90rem;
+    text-align: center;
+    margin: 0 auto;
+    background: #f6f6f6;
+    position: relative;
+    overflow-y: scroll;
+}
+.PopUpWrap .PopWrapInner .popImgPayment{
+    width: 69.2rem;
+    height: 133.3rem;
+    margin: 3.5rem auto 5rem;
+}
