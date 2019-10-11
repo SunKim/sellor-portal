@@ -8,6 +8,16 @@ const routes = [
     path: '/join',
     component: () => import('layouts/BlankLayout.vue'),
     children: [{ path: '', component: () => import('pages/Join.vue') }]
+  },
+  {
+    path: '/privacy',
+    component: () => import('layouts/HeaderLayout.vue'),
+    children: [{ path: '', component: () => import('pages/PrivacyPolicy.vue') }]
+  },
+  {
+    path: '/terms',
+    component: () => import('layouts/HeaderLayout.vue'),
+    children: [{ path: '', component: () => import('pages/Terms.vue') }]
   }
 ]
 

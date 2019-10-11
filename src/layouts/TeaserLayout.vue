@@ -39,7 +39,7 @@
                 <a
                   href="https://blog.naver.com/linkedmarket"
                   target="_blank"
-                  style="background: url(../statics/images/teaser/icon_blog.png) no-repeat 0 0;"
+                  class="icon_blog"
                 >
                   링크드마켓 블로그
                 </a>
@@ -59,11 +59,30 @@
               style="background-color: #333; height: 1px; border: 0; margin: 2em 0;"
             />
             <ul class="int-link">
-              <li>공지사항</li>
-              <li>자주묻는 질문</li>
-              <li>이용약관</li>
-              <li>개인정보 처리방침</li>
-              <li>앱 다운로드 페이지</li>
+              <li>
+                <a href="/#/privacy" target="_blank">공지사항</a>
+              </li>
+              <li>
+                <a href="/#/privacy" target="_blank">자주묻는 질문</a>
+              </li>
+              <li>
+                <a href="/#/terms" target="_blank">이용약관</a>
+              </li>
+              <li>
+                <a href="/#/privacy" target="_blank">개인정보 처리방침</a>
+              </li>
+              <li>
+                <a
+                  :href="
+                    $q.platform.is.ios
+                      ? 'https://apple.co/2QdxGt8'
+                      : 'https://play.google.com/store/apps/details?id=com.tripath.linkedmarket.seller.hbapp'
+                  "
+                  target="_blank"
+                >
+                  앱 다운로드 페이지
+                </a>
+              </li>
             </ul>
 
             <div class="comp-addr">
@@ -108,11 +127,14 @@ ul.ext-link { display: block; }
 ul.ext-link li { margin-left: 1.4em; }
 ul.ext-link li:first-child { margin-left: 0; }
 ul.ext-link li a { overflow: hidden; text-indent: -9999px; display: inline-block; width: 50px; height: 50px; }
+ul.ext-link li a.icon_blog { background: url(../statics/images/teaser/icon_blog.png) no-repeat 0 0; }
+ul.ext-link li a.icon_blog:hover, ul.ext-link li a.icon_blog:active { background: url(../statics/images/teaser/icon_blog_hover.png) no-repeat 0 0; }
 
 ul.int-link { display: block; padding:0 1em; line-height: 2.6em; }
 ul.int-link li { font-size: 1.4rem; }
 ul.int-link li::after { content: " | "; display: inline-block; width: 2rem; text-align: center; }
 ul.int-link li:last-child::after { content: ""; }
+ul.int-link li a { text-decoration: none; color: #fff; }
 
 img.logo-black { width: 170px; display: none; }
 .comp-addr { font-size: 1.2rem; padding: 0 1em; }
@@ -130,7 +152,7 @@ img.logo-black { width: 170px; display: none; }
   footer hr { display: none; }
   footer .container { text-align: left; }
   footer .container > div { display: inline-block; width: 900px; }
-  img.logo-black { display: inline-block; float: left; margin-top: 32px; margin-right: 30px; }
+  img.logo-black { display: inline-block; float: left; margin-top: 32px; margin-left: 30px; margin-right: 30px; }
   ul.ext-link { display: inline-block; float: right; }
   ul.int-link { display: inline-block; padding:0 1em; line-height: 2.6em; }
 

@@ -114,11 +114,11 @@
       <h5 class="teaser-h5" style="margin-top: 4.5rem; line-height: 1.4em;">
         단, 5초만의 간단한 무료 회원가입
       </h5>
-      <button class="btn-blue" style="margin-top: 1rem;">시작이 반이죠</button>
+      <button class="btn-blue" style="margin-top: 1rem;" @click="goToJoin">시작이 반이죠</button>
       <h5 class="teaser-h5" style="margin-top: 4.5rem; line-height: 1.4em;">
         링크드마켓앱도 있다는 사실, 기억하세요!
       </h5>
-      <button class="btn-blue" style="margin-top: 1rem; margin-bottom: 5rem;">
+      <button class="btn-blue" style="margin-top: 1rem; margin-bottom: 5rem;" @click="openAppDownloadPopup">
         앱 다운로드 링크 받기
       </button>
     </section>
@@ -217,6 +217,7 @@
           <button
           class="btn-white"
           style="margin-top: 1.8rem; margin-bottom: 5rem;"
+          @click="goToJoin"
           >
           공유 한번으로, 최대 20% 수익금 받기
         </button>
@@ -243,7 +244,7 @@
         <p><b>상품 구매하고 수익금 받기</b></p>
         <div>
           <input type="text" class="link" :value="selectedPrdName" readonly />
-          <button class="share">구매하기</button>
+          <button class="share" @click="purchase">구매하기</button>
         </div>
 
         <p style="margin-top: 25px;">내가 받는 수익금</p>
@@ -296,7 +297,7 @@
     </section>
 
     <section
-      style="padding-bottom: 0 !important; background:url(../statics/images/teaser/bgMain6.png) repeat-x center center;"
+      style="padding-bottom: 0 !important; background:url(../statics/images/teaser/bgMain6.png) repeat-x center center; background-size: 2560px;"
     >
       <h2 class="teaser-h2 cwhite">
         내가 받은 <b>수익금은 어떻게 찾아가죠?</b>
@@ -314,20 +315,20 @@
       </h5>
 
       <div
-        class="profit-container row justify-center q-gutter-md"
+        class="profit-container row justify-between q-gutter-md"
         style="margin-top:2.4em;"
       >
-        <div class="col-3">
+        <div class="col">
           <p class="profit-step-desc">
             구매, 판매로 적립된 수익금
           </p>
         </div>
-        <div class="col-3">
+        <div class="col">
           <p class="profit-step-desc">
             한 달에 4번 정산일<br />(7일 정산 주기)
           </p>
         </div>
-        <div class="col-3">
+        <div class="col">
           <p class="profit-step-desc">
             등록된 내 계좌로<br />
             <!-- '뙇' 입금 -->
@@ -335,8 +336,8 @@
           </p>
         </div>
       </div>
-      <div class="profit-container row justify-center q-gutter-md">
-        <div class="col-3">
+      <div class="profit-container row justify-between q-gutter-md">
+        <div class="col">
           <img
             class="profit_step"
             src="statics/images/teaser/profit1_m.png"
@@ -348,7 +349,7 @@
             alt="링크드마켓 구매, 판매로 적립된 수익금"
           />
         </div>
-        <div class="col-3">
+        <div class="col">
           <img
             class="profit_step"
             src="statics/images/teaser/profit2_m.png"
@@ -360,7 +361,7 @@
             alt="한 달에 4번 정산일(7일 정산 주기)"
           />
         </div>
-        <div class="col-3">
+        <div class="col">
           <img
             class="profit_step"
             src="statics/images/teaser/profit3_m.png"
@@ -381,10 +382,84 @@
         링크드마켓을 하려면!
       </h2>
       <h5 class="teaser-h5">링크드마켓 앱을 다운로드 하세요.</h5>
-      <button class="btn-blue" style="margin-top: 2.5rem; margin-bottom: 5rem;">
+      <button class="btn-blue" style="margin-top: 2.5rem; margin-bottom: 5rem;" @click="openAppDownloadPopup">
         최대 20% 혜택을 앱으로 받기
       </button>
     </section>
+
+    <!-- 앱 다운로드 Dialog -->
+    <q-dialog content-class="appDownloadPopup" v-model="appDownloadPopup" :position="$q.screen.width > 1200 ? 'standard' : 'top'">
+      <q-card class="appDownloadCard">
+        <q-card-section class="row items-center" style="position: relative;">
+          <img style="margin-left: 50%; transform: translateX(-50%); margin-top: 20px;" src="statics/images/logo_simple.png" />
+
+          <!-- 기본 close 버튼 -->
+          <!-- <q-btn size="xl" icon="close" flat round dense v-close-popup style="position: absolute; right: 20px; top: 10px; color: #666;" /> -->
+          <q-btn flat round dense v-close-popup style="position: absolute; right: 30px; top: 20px;">
+            <img src="statics/images/teaser/icon_close.png" style="width: 24px;"/>
+          </q-btn>
+        </q-card-section>
+
+        <q-card-section>
+          <h4 class="teaser-h4">
+            웰컴, 링크드마켓!<br />
+            편하고 쉽게 앱으로 시작하세요!
+          </h4>
+        </q-card-section>
+
+        <q-card-section class="appDownloadInput" style="padding: 10px 30px;">
+          <p style="font-size: 13px; color: #2b90d9; ">앱 다운로드 주소 메세지로 받기</p>
+          <q-input v-model="userMobile" label="휴대폰번호" placeholder="-는 제외하고 입력" style="margin-top: 10px;">
+            <template v-slot:after>
+              <q-btn flatl color="primary" label="받기" />
+            </template>
+          </q-input>
+          <q-input v-model="authNo" label="인증번호" placeholder="" style="margin-top: 10px;">
+            <template v-slot:after>
+              <q-btn flatl color="primary" label="확인" />
+            </template>
+          </q-input>
+          <p v-show="sendAuthSMS" style="font-size: 13px; color: #666; margin-top: 6px;">인증번호가 발송되었습니다. (남은시간 00:00)</p>
+        </q-card-section>
+
+        <q-card-section class="appDownloadInput" style="margin: 10px 0; padding: 10px 20px; padding-bottom: 40px;">
+          <div class="q-gutter-sm row justify-center items-center">
+            <q-checkbox v-model="agreePrivacyYn" label="개인정보 수집이용에 동의합니다." true-value="1" false-value="0" />
+            <a target="_blank" href="/#/privacy" style="font-size: 14px; color: #a0a0a0; padding-top: 2px;">내용보기</a>
+          </div>
+          <table class="tbl-privacy">
+            <thead>
+              <tr>
+                <th>개인정보 수집 항목</th>
+                <th>수집 및 이용 목적</th>
+                <th>보유기간</th>
+              </tr>
+            </thead>
+            <tbody>
+              <td>휴대폰 번호</td>
+              <td>SMS 발송</td>
+              <td>7일 후 파기</td>
+            </tbody>
+          </table>
+        </q-card-section>
+      </q-card>
+    </q-dialog>
+
+    <q-dialog v-model="purchasePopup">
+      <q-card style="min-width: 300px;">
+        <q-card-section>
+          <div class="text-h6">결제가 완료되었습니다.</div>
+        </q-card-section>
+
+        <q-card-section>
+          5,800원의 수익금이 적립되었습니다.
+        </q-card-section>
+
+        <q-card-actions align="right">
+          <q-btn flat label="OK" color="primary" v-close-popup />
+        </q-card-actions>
+      </q-card>
+    </q-dialog>
   </div>
 </template>
 
@@ -420,7 +495,13 @@ export default {
         { id: 1, name: '[한국도자기] 홈 세트', url: 'https://linkedmarket.com/product/A', price: '99,000원', profit: '9,900원', fileName: 'product1', isActive: false },
         { id: 2, name: '[에스티로더] 6세대 갈색병', url: 'https://linkedmarket.com/product/B', price: '169,900원', profit: '8,000원', fileName: 'product2', isActive: false },
         { id: 3, name: '[랩노쉬] 그로서리 곤약면 4종', url: 'https://linkedmarket.com/product/C', price: '20,800원', profit: '3,120원', fileName: 'product3', isActive: false }
-      ]
+      ],
+      appDownloadPopup: false,
+      userMobile: '',
+      authNo: '',
+      sendAuthSMS: false,
+      agreePrivacyYn: '0',
+      purchasePopup: false
     }
   },
   methods: {
@@ -439,6 +520,12 @@ export default {
     },
     goToJoin: function () {
       this.$router.push('/join')
+    },
+    openAppDownloadPopup: function () {
+      this.appDownloadPopup = true
+    },
+    purchase: function () {
+      this.purchasePopup = true
     }
   },
   computed: {
@@ -460,7 +547,7 @@ export default {
     }
   },
   created: function () {
-    console.log(this.$q.screen)
+    // console.log(this.$q.screen.width)
   }
 }
 </script>
@@ -492,18 +579,19 @@ section { text-align: center; padding: 2rem;font-size: 1.6rem; }
   height: 30px;
   border-radius: 40px;
 }
-button { text-align: center; background: none; min-width: 16rem; border: 1px solid #2b90d9; color: #2b90d9; font-size: 1.6rem; padding-top: 0.6rem; padding-bottom: 0.6rem; }
-button:hover { cursor: pointer; }
 
-.btn-white { color: #ffffff; border: 1px solid #ffffff; }
-.btn-white:hover, .btn-white:active { background: #2b90d9; color: #ffffff; border: 1px solid #2b90d9; }
+.carousel-container button, section button { text-align: center; background: none; min-width: 16rem; border: 1px solid #2b90d9; color: #2b90d9; font-size: 1.6rem; padding-top: 0.6rem; padding-bottom: 0.6rem; }
+.carousel-container button:hover, section button:hover { cursor: pointer; }
+
+.btn-white { color: #ffffff !important; border: 1px solid #ffffff !important; }
+.btn-white:hover, .btn-white:active { background: #2b90d9 !important; color: #ffffff !important; border: 1px solid #2b90d9 !important; }
 .btn-blue { color: #2b90d9; border: 1px solid #2b90d9; }
 .btn-blue:hover, .btn-blue:active { background: #2b90d9; color: #ffffff; border: 1px solid #2b90d9; }
 
 div.profit-container { max-width: 1170px; margin-left: auto; margin-right: auto; }
 img.info { display: block; width: 100%; max-width: 48rem; margin: 4rem auto; }
-img.profit_step { width:100%; height: 100%; max-width: 210px; }
-p.profit-step-desc { color: #fff; height: 4rem; font-size: 0.7rem; margin: 0; }
+img.profit_step { width:100%; height: 100%; max-width: 190px; }
+p.profit-step-desc { color: #fff; height: 4rem; font-size: 1.2rem; margin: 0; }
 
 div.manual-board { width: 100%; max-width: 400px; background: #315374; margin: 0 auto; padding: 22px 16px; color: #fff; text-align: left; font-size: 14px; font-weight: 600; }
 div.manual-board p { margin-left: 0; }
@@ -513,12 +601,17 @@ div.manual-board .item-list img:hover { cursor: pointer; }
 div.manual-board input { padding: 8px; background: #365a7e; color: #dfdfdf; font-size: 14px; border: 0; border-radius: 0; border-style:solid; text-overflow: ellipsis; white-space: nowrap; overflow: hidden; }
 div.manual-board input.link { width: 68%; }
 div.manual-board input.money { width: 100%; text-align: right; }
-div.manual-board button { color: #fff; border: 0; background: #222; margin-top: 10px; font-size: 14px; padding:8px 0; }
-div.manual-board button:hover, div.manual-board button:active { background: #999; }
+div.manual-board button { color: #fff; border: 0; background: #282c37; margin-top: 10px; font-size: 14px; padding:8px 0; }
+div.manual-board button:hover, div.manual-board button:active { background: #181b23; }
 div.manual-board button.share { width: 30%; min-width: 30%; margin-left: 2%; }
 /* input에 금액과 label이 같이 들어가있어서 처리 */
 div.manual-board div.input-container { position: relative; margin-top: 10px; }
 div.manual-board div.input-container label { color: #dfdfdf; position: absolute; left: 8px; top: 50%; transform: translateY(-50%); }
+
+.appDownloadCard { font-size: 12px; min-width: 300px; text-align: center; background: #f6f6f6; }
+.tbl-privacy { border-collapse: collapse; }
+.tbl-privacy th, .tbl-privacy td { border: 1px solid #d7d7d7; padding: 4px; }
+.tbl-privacy th { background: #939393; color: #fff; }
 
 /* 768px 이하 -> 모바일 */
 @media (max-width: 768px) {
@@ -556,6 +649,9 @@ div.manual-board div.input-container label { color: #dfdfdf; position: absolute;
   section p { display: inline-block; margin-left: 1rem; }
   section p:first-child { margin-left: 0; }
   p.profit-step-desc { font-size: 1.2rem; }
+
+  .appDownloadCard { font-size: 12px; min-width: 596px; }
+  .appDownloadInput { padding-left: 90px !important; padding-right: 90px !important; }
 }
 /* 1200px 이상 -> PC */
 @media (min-width: 1200px) {
