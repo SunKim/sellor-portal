@@ -216,9 +216,8 @@ export default {
         // const CHAT_API_BASE_URL = 'http://localhost:9090'
         // const CHAT_API_URL = CHAT_API_BASE_URL + '/api/account/email/exist'
 
-        // /api/checkEmailDuplication
-        // const WEB_API_BASE_URL = 'http://localhost:16080'
-        const WEB_API_BASE_URL = 'https://linkedmarket.com'
+        const WEB_API_BASE_URL = 'http://localhost:16080'
+        // const WEB_API_BASE_URL = 'https://linkedmarket.com'
         const WEB_API_URL = WEB_API_BASE_URL + '/api/checkEmailDuplication'
 
         this.$axios
@@ -233,7 +232,7 @@ export default {
             }
           })
           .catch(e => {
-            alert('오류가 발생했습니다. 고객센터로 문의 바랍니다.')
+            alert('오류가 발생했습니다. 고객센터(1661-9012)로 문의 바랍니다.')
           })
       }
     },

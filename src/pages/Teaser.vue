@@ -237,7 +237,7 @@
         <p><b>내 상품링크 공유(홍보)하고 수익금 받기</b></p>
         <div>
           <input type="text" class="link" :value="selectedPrdUrl" readonly />
-          <button class="share">공유하기</button>
+          <button class="share" @click="share">공유하기</button>
         </div>
 
         <p style="margin-top: 25px;">수익금 받는 방법2.</p>
@@ -428,6 +428,11 @@
             <a target="_blank" href="/#/privacy" style="font-size: 14px; color: #a0a0a0; padding-top: 2px;">내용보기</a>
           </div>
           <table class="tbl-privacy">
+            <colgroup>
+                <col width="34%" />
+                <col width="33%" />
+                <col width="33%" />
+            </colgroup>
             <thead>
               <tr>
                 <th>개인정보 수집 항목</th>
@@ -453,6 +458,22 @@
 
         <q-card-section>
           5,800원의 수익금이 적립되었습니다.
+        </q-card-section>
+
+        <q-card-actions align="right">
+          <q-btn flat label="OK" color="primary" v-close-popup />
+        </q-card-actions>
+      </q-card>
+    </q-dialog>
+
+    <q-dialog v-model="sharePopup">
+      <q-card style="min-width: 300px;">
+        <q-card-section>
+          <div class="text-h6">공유</div>
+        </q-card-section>
+
+        <q-card-section>
+          10원의 수익금이 적립되었습니다.
         </q-card-section>
 
         <q-card-actions align="right">
@@ -501,7 +522,8 @@ export default {
       authNo: '',
       sendAuthSMS: false,
       agreePrivacyYn: '0',
-      purchasePopup: false
+      purchasePopup: false,
+      sharePopup: false
     }
   },
   methods: {
@@ -525,7 +547,18 @@ export default {
       this.appDownloadPopup = true
     },
     purchase: function () {
-      this.purchasePopup = true
+      if (typeof (this.products.find(product => product.isActive === true)) === 'undefined') {
+        alert('상품을 먼저 선택해주세요.')
+      } else {
+        this.purchasePopup = true
+      }
+    },
+    share: function () {
+      if (typeof (this.products.find(product => product.isActive === true)) === 'undefined') {
+        alert('상품을 먼저 선택해주세요.')
+      } else {
+        this.sharePopup = true
+      }
     }
   },
   computed: {
