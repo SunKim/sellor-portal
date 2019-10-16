@@ -257,7 +257,7 @@
           <input type="text" class="money" :value="selectedPrdProfit" readonly />
         </div>
 
-        <button style="width: 100%; margin-top: 12px;">수익금 받기</button>
+        <button style="width: 100%; margin-top: 12px;" @click="gerProfit">수익금 받기</button>
       </div>
       </div>
     </section>
@@ -453,32 +453,26 @@
     <q-dialog v-model="purchasePopup">
       <q-card style="min-width: 300px;">
         <q-card-section>
-          <div class="text-h6">결제가 완료되었습니다.</div>
+          <img :src="selectedPrdPurchaseImg" style="width:100%;max-width:747px;cursor:pointer;" @click="purchasePopup=false" />
         </q-card-section>
-
-        <q-card-section>
-          5,800원의 수익금이 적립되었습니다.
-        </q-card-section>
-
-        <q-card-actions align="right">
-          <q-btn flat label="OK" color="primary" v-close-popup />
-        </q-card-actions>
       </q-card>
     </q-dialog>
 
+    <!-- 앱 다운로드 Dialog -->
     <q-dialog v-model="sharePopup">
-      <q-card style="min-width: 300px;">
-        <q-card-section>
-          <div class="text-h6">공유</div>
+      <q-card style="width: 100%; max-width: 992px;">
+        <q-card-section class="row items-center" style="position: relative;">
+          <img style="margin-left: 50%; transform: translateX(-50%); margin-top: 20px;" src="statics/images/logo_simple.png" />
+
+          <!-- 기본 close 버튼 -->
+          <q-btn flat round dense v-close-popup style="position: absolute; right: 30px; top: 20px;">
+            <img src="statics/images/teaser/icon_close.png" style="width: 24px;"/>
+          </q-btn>
         </q-card-section>
 
         <q-card-section>
-          10원의 수익금이 적립되었습니다.
+          <h4 class="text-h4 tc">공유하기</h4>
         </q-card-section>
-
-        <q-card-actions align="right">
-          <q-btn flat label="OK" color="primary" v-close-popup />
-        </q-card-actions>
       </q-card>
     </q-dialog>
   </div>
@@ -559,6 +553,9 @@ export default {
       } else {
         this.sharePopup = true
       }
+    },
+    gerProfit: function () {
+      alert('수익금은 7일 이내에 본인 계좌로 송금됩니다.')
     }
   },
   computed: {
@@ -577,6 +574,10 @@ export default {
     selectedPrdProfit: function () {
       const selectedPrd = this.products.find(product => product.isActive === true)
       return typeof (selectedPrd) === 'undefined' ? '' : selectedPrd.profit
+    },
+    selectedPrdPurchaseImg: function () {
+      const selectedPrd = this.products.find(product => product.isActive === true)
+      return typeof (selectedPrd) === 'undefined' ? '' : ('statics/images/teaser/purchase_sample' + selectedPrd.id + '.png')
     }
   },
   created: function () {
