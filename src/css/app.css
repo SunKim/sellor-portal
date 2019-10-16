@@ -36,18 +36,21 @@
 
 
 /* 기본 */
-* { -webkit-overflow-scrolling: touch;color: }
+* { -webkit-overflow-scrolling: touch; }
 html, body, header, section, footer, div, ul { scroll-behavior: smooth; }
 html{ width: 100%; height: 100%; }
-body { font-family: 'NanumSquare', '나눔고딕', 'Nanum Gothic', "Malgun Gothic","맑은 고딕","Dotum","돋움","굴림",Sans-serif; }
-h1, h2, h3, h4, h5, h6, p { margin-top: 0; margin-bottom: 0;}
-hr { margin:10px 0px; }
-table, tr { width:100%; }
-table thead th { text-align:center; }
-table tbody tr { text-align:center; }
-ul, ol { padding:0px; }
-ul li { list-style-type:none; }
+body { font-family: 'NanumSquare', '나눔고딕', 'Nanum Gothic', "Malgun Gothic", "맑은 고딕", "Dotum", "돋움", "굴림", Sans-serif; }
+h1, h2, h3, h4, h5, h6, p { margin-top: 0; margin-bottom: 0; }
+hr { margin: 10px 0px; }
+table, tr { width: 100%; }
+table thead th { text-align: center; }
+table tbody tr { text-align: center; }
+ul, ol { padding: 0px; }
+ul li { list-style-type: none; }
 i { margin-left: 0.25rem; margin-right: 0.25rem;}
+
+/* 나눔스퀘어(NanumSquare) 크롬 버그로 password에서 패스워드용 disc가 안보이는 현상 해결용 */
+input[type="password"] { font-family: '나눔고딕', 'Nanum Gothic', "Malgun Gothic", "맑은 고딕", "Dotum", "돋움", "굴림", Sans-serif; }
 
 .clear:after{ content: ''; display: block; clear: both; }
 /* 기본 */

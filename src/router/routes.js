@@ -7,7 +7,13 @@ const routes = [
   {
     path: '/join',
     component: () => import('layouts/BlankLayout.vue'),
-    children: [{ path: '', component: () => import('pages/Join.vue') }]
+    children: [
+      { path: '', component: () => import('pages/Join.vue') },
+      {
+        path: 'complete/:nickname',
+        component: () => import('pages/JoinComplete.vue')
+      }
+    ]
   },
   {
     path: '/privacy',
