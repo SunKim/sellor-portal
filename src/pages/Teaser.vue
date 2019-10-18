@@ -411,12 +411,27 @@
           <p style="font-size: 13px; color: #2b90d9; ">앱 다운로드 주소 메세지로 받기</p>
           <q-input v-model="userMobile" label="휴대폰번호" placeholder="-는 제외하고 입력" style="margin-top: 10px;">
             <template v-slot:after>
-              <q-btn flatl color="primary" label="받기" />
+              <q-btn flatl color="primary" label="받기" @click="getAuthNo" />
             </template>
           </q-input>
-          <q-input v-model="authNo" label="인증번호" placeholder="" style="margin-top: 10px;">
+          <!-- <q-input v-model="authNo" label="인증번호" placeholder="" style="margin-top: 10px;">
             <template v-slot:after>
-              <q-btn flatl color="primary" label="확인" />
+              <q-btn color="primary" label="확인" />
+            </template>
+          </q-input> -->
+          <q-input
+            v-model="authNo"
+            label="인증번호"
+            placeholder="5자리"
+            style="margin-top: 10px;"
+          >
+            <template v-slot:append>
+              <span style="color: #f43477; font-size: 16px;">
+                {{ timerRemain }}
+              </span>
+            </template>
+            <template v-slot:after>
+              <q-btn color="primary" label="확인" @click="checkAuthNo" />
             </template>
           </q-input>
           <p v-show="sendAuthSMS" style="font-size: 13px; color: #666; margin-top: 6px;">인증번호가 발송되었습니다. (남은시간 00:00)</p>
@@ -450,6 +465,7 @@
       </q-card>
     </q-dialog>
 
+    <!-- 구매하기 Dialog -->
     <q-dialog v-model="purchasePopup">
       <q-card style="min-width: 300px;">
         <q-card-section>
@@ -458,20 +474,33 @@
       </q-card>
     </q-dialog>
 
-    <!-- 앱 다운로드 Dialog -->
-    <q-dialog v-model="sharePopup">
-      <q-card style="width: 100%; max-width: 992px;">
+    <!-- 공유하기 Dialog -->
+    <q-dialog content-class="sharePopup" v-model="sharePopup">
+      <q-card class="shareCard">
         <q-card-section class="row items-center" style="position: relative;">
           <img style="margin-left: 50%; transform: translateX(-50%); margin-top: 20px;" src="statics/images/logo_simple.png" />
 
           <!-- 기본 close 버튼 -->
+          <!-- <q-btn size="xl" icon="close" flat round dense v-close-popup style="position: absolute; right: 20px; top: 10px; color: #666;" /> -->
           <q-btn flat round dense v-close-popup style="position: absolute; right: 30px; top: 20px;">
             <img src="statics/images/teaser/icon_close.png" style="width: 24px;"/>
           </q-btn>
         </q-card-section>
 
         <q-card-section>
-          <h4 class="text-h4 tc">공유하기</h4>
+          <h4 class="teaser-h4">공유하기</h4>
+        </q-card-section>
+
+        <q-card-section class="shareCardDetail mt20 mb20">
+          <div>
+            <img src="statics/images/teaser/share1.png" style="width: 100%;" />
+          </div>
+          <div>
+            <img src="statics/images/teaser/share_arrow.png" />
+          </div>
+          <div>
+            <img src="statics/images/teaser/share2.png" style="width: 100%;" />
+          </div>
         </q-card-section>
       </q-card>
     </q-dialog>
@@ -515,9 +544,14 @@ export default {
       userMobile: '',
       authNo: '',
       sendAuthSMS: false,
+      authNoServer: '', // 서버로부터 받은 인증번호
+      authNoPass: false, // SMS 인증 완료여부
       agreePrivacyYn: '0',
       purchasePopup: false,
-      sharePopup: false
+      sharePopup: false,
+      timer: null, // setInterval 할당 object
+      timerCounter: 180, // 인증번호 타이머 카운터
+      timerRemain: '' // 남은시간
     }
   },
   methods: {
@@ -555,7 +589,146 @@ export default {
       }
     },
     gerProfit: function () {
-      alert('수익금은 7일 이내에 본인 계좌로 송금됩니다.')
+      alert('수익금은 매주 본인 계좌로 송금됩니다.')
+    },
+    getAuthNo: function () {
+      if (this.timerCounter <= 0 || this.timer) {
+        alert(
+          '인증번호가 이미 전송되었습니다. 다시 받기를 원하시면 페이지를 새로고침 해주세요.'
+        )
+        return
+      }
+      /* eslint-disable-next-line */
+      const re = /(^02.{0}|^01.{1}|[0-9]{3})([0-9]+)([0-9]{4})/
+      if (!re.test(this.userMobile)) {
+        alert('올바른 휴대폰번호 형식이 아닙니다.')
+        return
+      }
+      if (this.agreePrivacyYn === '0') {
+        alert('개인정보 수집이용에 동의해주세요.')
+        return
+      }
+
+      // 서버에서 폰번호에 -을 안붙이면 fail이 떨어져서 -없이 입력해도 -를 넣어서 보내줌
+      let body = {
+        rcvrMbilno: this.userMobile.replace(
+          /(^02.{0}|^01.{1}|[0-9]{3})([0-9]+)([0-9]{4})/,
+          '$1-$2-$3'
+        )
+      }
+
+      // const WEB_API_BASE_URL = 'http://localhost:16080'
+      let WEB_API_BASE_URL = 'https://www.linkedmarket.com'
+      if (this.$q.platform.is.mobile) {
+        WEB_API_BASE_URL = 'https://m.linkedmarket.com'
+      }
+      let WEB_API_URL = WEB_API_BASE_URL + '/api/sendAuthSMS'
+
+      this.$axios
+        .post(WEB_API_URL, body)
+        .then(res => {
+          let data = res.data
+          if (data.resCode === '0000') {
+            // 서버로부터 인증번호를 바로 받음.
+            this.authNoServer = data.authNum
+            console.log('this.authNoServer : ' + this.authNoServer)
+
+            alert('인증번호가 전송되었습니다.')
+            this.timerStart()
+          } else {
+            alert(data.resMsg)
+          }
+        })
+        .catch(e => {
+          alert(
+            '인증번호 SMS 전송 도중 오류가 발생했습니다. 고객센터(1661-9012)로 문의 바랍니다.'
+          )
+        })
+    },
+    checkAuthNo: function () {
+      if (this.authNo.length !== 5) {
+        alert('인증번호 5자리를 입력해주세요')
+        return
+      }
+      if (this.timerCounter <= 0) {
+        alert('제한시간이 만료되었습니다. 인증번호를 재전송 받아주세요.')
+        return
+      }
+      if (this.authNo !== this.authNoServer) {
+        alert('인증번호가 맞지 않습니다. 다시 확인 후 입력해 주세요.')
+        return
+      }
+
+      alert('인증번호 확인이 완료되었습니다.')
+      this.authNoPass = true
+      clearInterval(this.timer)
+
+      // 바로 SMS 전송해줌
+      this.getAppDownloadSMS()
+      this.appDownloadPopup = false
+      this.agreePrivacyYn = false
+      this.userMobile = ''
+      this.authNo = ''
+      this.timerCounter = 180
+      this.timerRemain = ''
+    },
+    getAppDownloadSMS: function () {
+      // 서버에서 폰번호에 -을 안붙이면 fail이 떨어져서 -없이 입력해도 -를 넣어서 보내줌
+      let body = {
+        rcvrMbilno: this.userMobile.replace(
+          /(^02.{0}|^01.{1}|[0-9]{3})([0-9]+)([0-9]{4})/,
+          '$1-$2-$3'
+        )
+      }
+
+      // const WEB_API_BASE_URL = 'http://localhost:16080'
+      let WEB_API_BASE_URL = 'https://www.linkedmarket.com'
+      if (this.$q.platform.is.mobile) {
+        WEB_API_BASE_URL = 'https://m.linkedmarket.com'
+      }
+      let WEB_API_URL = WEB_API_BASE_URL + '/api/sendAppDownloadSMS'
+
+      this.$axios
+        .post(WEB_API_URL, body)
+        .then(res => {
+          let data = res.data
+          if (data.resCode === '0000') {
+            alert('휴대폰번호로 링크드마켓 앱 다운로드 링크를 보내드렸어요.')
+          } else {
+            alert(data.resMsg)
+          }
+        })
+        .catch(e => {
+          alert(
+            '앱 다운로드 링크 전송 도중 오류가 발생했습니다. 고객센터(1661-9012)로 문의 바랍니다.'
+          )
+        })
+    },
+    timerStart: function () {
+      // 1초에 한번씩 timerStart 호출
+      this.timer = setInterval(() => {
+        this.timerCounter-- // 1찍 감소
+        this.timerRemain = this.formatTime()
+
+        if (this.timerCounter <= 0) {
+          this.timerStop()
+        }
+      }, 1000)
+    },
+    formatTime: function () {
+      let minutes = Math.floor(this.timerCounter / 60)
+      let seconds = this.timerCounter % 60
+
+      return this.pad(minutes, 2) + ':' + this.pad(seconds, 2)
+    },
+    pad (n, width) {
+      n = n + ''
+      return n.length >= width
+        ? n
+        : new Array(width - n.length + 1).join('0') + n
+    },
+    timerStop () {
+      clearInterval(this.timer)
     }
   },
   computed: {
@@ -582,6 +755,9 @@ export default {
   },
   created: function () {
     // console.log(this.$q.screen.width)
+  },
+  beforeDestroy () {
+    clearInterval(this.timer)
   }
 }
 </script>
@@ -643,6 +819,10 @@ div.manual-board div.input-container { position: relative; margin-top: 10px; }
 div.manual-board div.input-container label { color: #dfdfdf; position: absolute; left: 8px; top: 50%; transform: translateY(-50%); }
 
 .appDownloadCard { font-size: 12px; min-width: 300px; text-align: center; background: #f6f6f6; }
+.shareCard { font-size: 12px; min-width: 300px; text-align: center; background: #f6f6f6; max-width: 990px; }
+.shareCardDetail { max-width: 440px; }
+.shareCardDetail div:nth-child(2) { margin: 30px auto; }
+.shareCardDetail div:nth-child(2) img { width: 50%; max-width: 40px; transform: rotate(90deg); }
 .tbl-privacy { border-collapse: collapse; }
 .tbl-privacy th, .tbl-privacy td { border: 1px solid #d7d7d7; padding: 4px; }
 .tbl-privacy th { background: #939393; color: #fff; }
@@ -710,5 +890,9 @@ div.manual-board div.input-container label { color: #dfdfdf; position: absolute;
 
   .manual-desc { display: inline-block; width: 50%; }
   .manual-board { display: inline-block; width: 50%; float: left; margin-left: 10% !important; }
+
+  .shareCardDetail { padding: 40px; display: flex; justify-content: center; align-items: center; max-width: 990px; }
+  .shareCardDetail div:nth-child(2) { margin: 0px 20px; min-width: 40px; }
+  .shareCardDetail div:nth-child(2) img { width: 100%; transform: rotate(0deg); }
 }
 </style>

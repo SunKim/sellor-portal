@@ -11,7 +11,13 @@
             />
           </a>
           <q-space></q-space>
-          <q-btn flat color="blue-grey-10 text-weight-medium" label="로그인" />
+          <!-- <q-btn flat color="blue-grey-10 text-weight-medium" label="로그인" /> -->
+          <q-btn
+            flat
+            color="blue-grey-10 text-weight-medium"
+            label="회원가입"
+            @click="goToJoin"
+          />
         </div>
       </q-toolbar>
     </q-header>
@@ -59,12 +65,12 @@
               style="background-color: #333; height: 1px; border: 0; margin: 2em 0;"
             />
             <ul class="int-link">
-              <li>
+              <!-- <li>
                 <a href="/#/privacy" target="_blank">공지사항</a>
               </li>
               <li>
                 <a href="/#/privacy" target="_blank">자주묻는 질문</a>
-              </li>
+              </li> -->
               <li>
                 <a href="/#/terms" target="_blank">이용약관</a>
               </li>
@@ -86,9 +92,13 @@
             </ul>
 
             <div class="comp-addr">
-              <p>서울특별시 금천구 가산디지털1로 168 201호</p>
+              <p>주식회사 트라이패스</p>
+              <p>서울특별시 금천구 가산디지털1로 168 C동 201호</p>
               <p>T. 1661-9012 / F.02-2026-3201</p>
               <p>EMAIL : cs@linkedmarket.co.kr</p>
+              <p>대표이사 : 정유석, 김동준</p>
+              <p>사업자등록번호 : 114-86-86223</p>
+              <p>통신판매업 신고번호 : 제 2016-서울금천-0855 호</p>
             </div>
 
             <div class="copyright">
@@ -114,7 +124,12 @@
 
 <script>
 export default {
-  name: 'TeaserLayout'
+  name: 'TeaserLayout',
+  methods: {
+    goToJoin: function () {
+      this.$router.push('/join')
+    }
+  }
 }
 </script>
 

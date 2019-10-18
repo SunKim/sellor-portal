@@ -249,9 +249,6 @@ export default {
         // https://chat.linkedmarket.co.kr/api/account/email/exist
 
         let body = { mail: this.email }
-        // const CHAT_API_BASE_URL = 'https://chat.linkedmarket.co.kr'
-        // const CHAT_API_BASE_URL = 'http://localhost:9090'
-        // const CHAT_API_URL = CHAT_API_BASE_URL + '/api/account/email/exist'
 
         // const WEB_API_BASE_URL = 'http://localhost:16080'
         // 브라우저는 ajax 요청시 다른 서버(protocol, port, url)일 경우 OPTIONS method로 preflight을 보낸 후 서버에서 CORS 허용시 POST로 다시 보내는데
@@ -283,50 +280,47 @@ export default {
       }
     },
     getAuthNo: function () {
-      console.log(this.userMobile)
-
       /* eslint-disable-next-line */
       const re = /(^02.{0}|^01.{1}|[0-9]{3})([0-9]+)([0-9]{4})/
 
       if (!re.test(this.userMobile)) {
         alert('올바른 휴대폰번호 형식이 아닙니다.')
-      } else {
-        // 서버에서 폰번호에 -을 안붙이면 fail이 떨어져서 -없이 입력해도 -를 넣어서 보내줌
-        let body = {
-          rcvrMbilno: this.userMobile.replace(
-            /(^02.{0}|^01.{1}|[0-9]{3})([0-9]+)([0-9]{4})/,
-            '$1-$2-$3'
-          )
-        }
-
-        let WEB_API_BASE_URL = 'https://www.linkedmarket.com'
-        if (this.$q.platform.is.mobile) {
-          WEB_API_BASE_URL = 'https://m.linkedmarket.com'
-        }
-        const WEB_API_URL = WEB_API_BASE_URL + '/api/sendAuthSMS'
-
-        this.$axios
-          .post(WEB_API_URL, body)
-          .then(res => {
-            let data = res.data
-            if (data.resCode === '0000') {
-              // 서버로부터 인증번호를 바로 받음.
-              this.authNoServer = data.authNum
-              console.log('this.authNoServer : ' + this.authNoServer)
-
-              alert('인증번호가 전송되었습니다.')
-              this.timerStart()
-            } else {
-              alert(data.resMsg)
-            }
-          })
-          .catch(e => {
-            alert(
-              '인증번호 SMS 전송 도중 오류가 발생했습니다. 고객센터(1661-9012)로 문의 바랍니다.'
-            )
-          })
-        this.timerStart()
+        return
       }
+      // 서버에서 폰번호에 -을 안붙이면 fail이 떨어져서 -없이 입력해도 -를 넣어서 보내줌
+      let body = {
+        rcvrMbilno: this.userMobile.replace(
+          /(^02.{0}|^01.{1}|[0-9]{3})([0-9]+)([0-9]{4})/,
+          '$1-$2-$3'
+        )
+      }
+
+      let WEB_API_BASE_URL = 'https://www.linkedmarket.com'
+      if (this.$q.platform.is.mobile) {
+        WEB_API_BASE_URL = 'https://m.linkedmarket.com'
+      }
+      const WEB_API_URL = WEB_API_BASE_URL + '/api/sendAuthSMS'
+
+      this.$axios
+        .post(WEB_API_URL, body)
+        .then(res => {
+          let data = res.data
+          if (data.resCode === '0000') {
+            // 서버로부터 인증번호를 바로 받음.
+            this.authNoServer = data.authNum
+            console.log('this.authNoServer : ' + this.authNoServer)
+
+            alert('인증번호가 전송되었습니다.')
+            this.timerStart()
+          } else {
+            alert(data.resMsg)
+          }
+        })
+        .catch(e => {
+          alert(
+            '인증번호 SMS 전송 도중 오류가 발생했습니다. 고객센터(1661-9012)로 문의 바랍니다.'
+          )
+        })
     },
     checkAuthNo: function () {
       if (this.authNo.length !== 5) {
@@ -400,7 +394,19 @@ export default {
         passwordConfirm: this.pwd2,
         phone_first: tmpMobile.split('-')[0],
         phone_middle: tmpMobile.split('-')[1],
-        phone_last: tmpMobile.split('-')[2]
+        phone_last: tmpMobile.split('-')[2],
+        surveyItems: [
+          {
+            surveyId: 1,
+            qstNo: 1,
+            choiceNo: this.surveyWill
+          },
+          {
+            surveyId: 1,
+            qstNo: 2,
+            choiceNo: this.surveyExperience
+          }
+        ]
       }
 
       let WEB_API_BASE_URL = 'https://www.linkedmarket.com'
@@ -477,6 +483,7 @@ html, body { font-size: 14px; }
 /* div.bg { background: #d0d0d0; width: 100vw; min-height: calc(100vh - 0px); } */
 div.bg { width: 100vw; min-height: calc(100vh - 0px); }
 div.container { background: #fff; width: 100%; max-width: 460px; min-height: calc(100vh - 0px); padding: 2rem; padding-bottom: 6rem; text-align: center; }
+.test { display: none; }
 
 /* 768px 이하 -> 모바일 */
 @media (max-width: 768px) {
