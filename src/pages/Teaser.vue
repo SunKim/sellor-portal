@@ -631,7 +631,7 @@ export default {
           if (data.resCode === '0000') {
             // 서버로부터 인증번호를 바로 받음.
             this.authNoServer = data.authNum
-            console.log('this.authNoServer : ' + this.authNoServer)
+            // console.log('this.authNoServer : ' + this.authNoServer)
 
             alert('인증번호가 전송되었습니다.')
             this.timerStart()

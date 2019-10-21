@@ -101,7 +101,7 @@ export default {
   // created () {},
   // beforeMount () {},
   mounted () {
-    console.log(this.params)
+    // console.log(this.params)
   }
   // beforeUpdate () {},
   // updated () {},
